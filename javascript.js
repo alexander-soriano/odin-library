@@ -7,32 +7,44 @@ function Book(name,author,pages,haveRead) {
     this.haveRead = haveRead;
 };
 
+let shelf = document.querySelector('.shelf');
+function display(x) {
+    let newdiv = document.createElement('div');
+    newdiv.textContent = x;
+    shelf.appendChild(newdiv);
+};
+
 function addBookToLibrary(name) {
-    let newBook = new Book (name);
-    myLibrary.push(newBook);
+    arr = [];
+    myLibrary.forEach(elem => {
+        arr.push(elem.name)
+    })
+
+    if (arr.includes(name)){
+        alert('You already have this book');
+    } else if(name==='') {
+        alert('Your input is empty');
+    } else {
+        let newBook = new Book (name);
+        myLibrary.push(newBook);
+        display(name);
+    }
+    
 };
 
 addBookToLibrary('Noli me Tangere');
 addBookToLibrary('El Filibusterismo');
 
-let shelf = document.querySelector('.shelf');
 
-function display() {
-myLibrary.forEach((elem) => {
-    let newdiv = document.createElement('div');
-    newdiv.textContent = elem.name;
-    shelf.appendChild(newdiv); 
-});
-};
 
-display()
+// myLibrary.forEach(elem => {
+//     display(elem.name)
+// })
 
 let newBook = document.querySelector('.newbook');
 newBook.addEventListener('click',() => {
     const value = document.querySelector('input#bookTitle');
     addBookToLibrary(value.value);
 
-    let newdiv = document.createElement('div');
-    newdiv.textContent = value.value;
-    shelf.appendChild(newdiv); 
-})
+    
+});
