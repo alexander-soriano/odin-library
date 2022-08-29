@@ -8,10 +8,18 @@ function Book(name,author,pages,haveRead) {
 };
 
 let shelf = document.querySelector('.shelf');
-function display(x) {
+
+function createButton(){
+    let button = document.createElement('button');
+    button.textContent = 'x';
+    shelf.appendChild(button);
+}
+
+function display(book) {
     let newdiv = document.createElement('div');
-    newdiv.textContent = x;
+    newdiv.textContent = book;
     shelf.appendChild(newdiv);
+
 };
 
 function addBookToLibrary(name) {
